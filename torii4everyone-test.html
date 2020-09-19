@@ -13,6 +13,8 @@
 <input type="text" placeholder="135.6789" id="lng">
 <p>住所(空欄OK)</p>
 <input type="text" placeholder="●●県●●市●●町●●番地" id="addr">
+<p>情報提供者(地図に表示されます。匿名や空欄もOK)</p>
+<input type="text" placeholder="鳥居太郎" id="name">
 <p>調査結果画像（機能しません）作成中</p>
 <input type="file" id="resultPic" accept=".png, .jpg, .jpeg, .gif">  
 <p>鳥居画像１（機能しません）作成中</p>
@@ -26,7 +28,7 @@
 <p>鳥居画像５（機能しません）作成中</p>
 <input type="file" id="toriiPic5" accept=".png, .jpg, .jpeg, .gif">  
 <p>鳥居画像６（機能しません）作成中</p>
-<input type="file" id="toriiPic6" accept=".png, .jpg, .jpeg, .gif">  
+<input type="file" id="toriiPic6" accept=".png, .jpg, .jpeg, .gif"> 
 </form>
 <button id="b">アンケートを送信</button>
 <hr>
@@ -43,6 +45,7 @@ const city = document.getElementById('city').value
 const lat = document.getElementById('lat').value
 const lng = document.getElementById('lng').value
 const addr = document.getElementById('addr').value
+const name = document.getElementById('name').value
 
 const data = {
     shrine: shrine,
@@ -51,6 +54,7 @@ const data = {
     lat: lat,
     lng: lng,
     addr: addr,
+    name: name,
 }
 
 axios.post('https://torii4everyone.firebaseio.com/form.json', data)
@@ -69,7 +73,7 @@ g.addEventListener('click', () => {
       })
       new gridjs.Grid({
         search: true,
-        columns: ['神社名', '都道府県', '市町村', '緯度', '経度', '住所(空欄OK)'],
+        columns: ['神社名', '都道府県', '市町村', '緯度', '経度', '住所', '情報提供者'],
         data: data
       }).render(document.getElementById('result'));
     })
