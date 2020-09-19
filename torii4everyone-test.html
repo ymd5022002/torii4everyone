@@ -1,8 +1,20 @@
 
-<h1>みんなの鳥居のキズプロジェクト</h1>
-テスト用ですので、適当にいじったり、送信してもらって大丈夫です。<br>
+<h1>みんなの鳥居のキズプロジェクト（テスト用）</h1>
+
+全国各地の神社の鳥居のキズの情報を皆様で持ち寄って、マッピングして災害の歴史を知るというプロジェクト。<br>
+石の鳥居のキズを見かけたら記録いただき、ぜひ、情報をお寄せいただけたら幸いです。<br>
+<br>
+●鳥居のキズと災害の歴史・キズの記録方法<br>
+　<a href="https://www.k-es.org/kawabe/examtrii/index.html" target="_blank">こちら</a><br>
+●鳥居のキズの記録用紙<br>
+　<a href="https://www.k-es.org/kawabe/examtrii/%E9%B3%A5%E5%B1%85%E8%AA%BF%E6%9F%BB%E3%82%AB%E3%83%BC%E3%83%89V1.1.gif" target="_blank">
+gif画像</a><br>
+　<a href="https://www.k-es.org/torii/%E9%B3%A5%E5%B1%85%E8%AA%BF%E6%9F%BB%E3%82%AB%E3%83%BC%E3%83%89v1.1A4%E5%8D%B0%E5%88%B7%E7%94%A8.pdf" target="_blank">
+pdf(A4サイズ)</a><br>
+<br>
+<hr>
+まだテスト用ですので、適当にいじったり、送信してもらって大丈夫です。<br>
 画像ファイルの指定はできますがアップロードは機能しません<br>
-集計結果の表示機能はバグで上手く機能しません。<br>
 
 <form>
     <p>
@@ -34,7 +46,7 @@
         <input type="text" placeholder="鳥居太郎" id="name">
     </p>
     <p>
-        調査結果画像
+        記録用紙画像
         <input type="file" id="resultPic" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
@@ -69,6 +81,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script src="https://unpkg.com/gridjs/dist/gridjs.development.js"></script>
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
 <script>
 const b = document.getElementById('b')
@@ -82,13 +95,15 @@ const addr = document.getElementById('addr').value
 const name = document.getElementById('name').value
 
 const data = {
-    shrine: shrine,
-    pref: pref,
-    city: city,
-    lat: lat,
-    lng: lng,
-    addr: addr,
-    name: name,
+    d70_shrine: shrine,
+    d60_pref: pref,
+    d50_city: city,
+    d40_lat: lat,
+    d30_lng: lng,
+    d20_addr: addr,
+    d10_name: name,
+    d09_recPic: "工事中",
+    d08_toriiPic1: "工事中",
 }
 
 axios.post('https://torii4everyone.firebaseio.com/form.json', data)
@@ -104,7 +119,7 @@ g.addEventListener('click', () => {
       })
       new gridjs.Grid({
         search: true,
-        columns: ['神社名', '都道府県', '市町村', '緯度', '経度', '住所', '情報提供者'],
+        columns: ['神社名', '都道府県', '市町村', '緯度', '経度', '住所', '情報提供者', '記録用紙', '鳥居画像'],
         data: data
       }).render(document.getElementById('result'));
     })
