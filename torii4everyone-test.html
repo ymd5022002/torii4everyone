@@ -13,21 +13,20 @@
 <input type="text" placeholder="135.6789" id="lng">
 <p>住所(空欄OK)</p>
 <input type="text" placeholder="●●県●●市●●町●●番地" id="addr">
-<p>調査結果画像</p>
+<p>調査結果画像（機能しません）作成中</p>
 <input type="file" id="resultPic" accept=".png, .jpg, .jpeg, .gif">  
-（機能しません）作成中
-<h2>鳥居画像１</h2>
-作成中
-<h2>鳥居画像２</h2>
-作成中
-<h2>鳥居画像３</h2>
-作成中
-<h2>鳥居画像４</h2>
-作成中
-<h2>鳥居画像５</h2>
-作成中
-<h2>鳥居画像６</h2>
-作成中
+<p>鳥居画像１（機能しません）作成中</p>
+<input type="file" id="toriiPic1" accept=".png, .jpg, .jpeg, .gif">  
+<p>鳥居画像２（機能しません）作成中</p>
+<input type="file" id="toriiPic2" accept=".png, .jpg, .jpeg, .gif">  
+<p>鳥居画像３（機能しません）作成中</p>
+<input type="file" id="toriiPic3" accept=".png, .jpg, .jpeg, .gif">  
+<p>鳥居画像４（機能しません）作成中</p>
+<input type="file" id="toriiPic4" accept=".png, .jpg, .jpeg, .gif">  
+<p>鳥居画像５（機能しません）作成中</p>
+<input type="file" id="toriiPic5" accept=".png, .jpg, .jpeg, .gif">  
+<p>鳥居画像６（機能しません）作成中</p>
+<input type="file" id="toriiPic6" accept=".png, .jpg, .jpeg, .gif">  
 </form>
 <button id="b">アンケートを送信</button>
 <hr>
@@ -45,8 +44,6 @@ const lat = document.getElementById('lat').value
 const lng = document.getElementById('lng').value
 const addr = document.getElementById('addr').value
 
-
-
 const data = {
     shrine: shrine,
     pref: pref,
@@ -55,7 +52,6 @@ const data = {
     lng: lng,
     addr: addr,
 }
-
 
 axios.post('https://torii4everyone.firebaseio.com/form.json', data)
     .then(res => console.log(res))
