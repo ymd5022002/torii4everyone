@@ -1,7 +1,7 @@
 
-<h1>みんなの鳥居のキズプロジェクト（テスト用）</h1>
+<h1>みんなの鳥居のキズプロジェクト</h1>
 テスト用ですので、適当にいじったり、送信してもらって大丈夫です。<br>
-画像ファイルの指定はできますがアップロードの機能は未実装です<br>
+画像ファイルの指定はできますがアップロードは機能しません<br>
 集計結果の表示機能はバグで上手く機能しません。<br>
 
 <form>
@@ -19,11 +19,11 @@
     </p>
     <p>
         緯度<br>
-        <input type="text" placeholder="35.6789" id="lat">
+        <input type="text" placeholder="例）35.6789" id="lat">
     </p>
     <p>
         経度<br>
-        <input type="text" placeholder="135.6789" id="lng">
+        <input type="text" placeholder="例）135.6789" id="lng">
     </p>
     <p>
         住所(空欄OK)<br>
@@ -34,40 +34,42 @@
         <input type="text" placeholder="鳥居太郎" id="name">
     </p>
     <p>
-        記入済調査用紙画像（機能しません）作成中<br>
+        調査結果画像
         <input type="file" id="resultPic" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
-        鳥居画像１（機能しません）作成中<br>
+        鳥居画像１　
         <input type="file" id="toriiPic1" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
-        鳥居画像２（機能しません）作成中<br>
+        鳥居画像２　
         <input type="file" id="toriiPic2" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
-        鳥居画像３（機能しません）作成中<br>
+        鳥居画像３　
         <input type="file" id="toriiPic3" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
-        鳥居画像４（機能しません）作成中<br>
+        鳥居画像４　
         <input type="file" id="toriiPic4" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
-        鳥居画像５（機能しません）作成中<br>
+        鳥居画像５　
         <input type="file" id="toriiPic5" accept=".png, .jpg, .jpeg, .gif">  
     </p>
     <p>
-        鳥居画像６（機能しません）作成中<br>
+        鳥居画像６　
         <input type="file" id="toriiPic6" accept=".png, .jpg, .jpeg, .gif"> 
     </p>
 </form>
-<button id="b">アンケートを送信</button>
+<button id="b">送信</button>
 <hr>
-<button id="g">集計結果を表示</button>
+<button id="g">集計結果</button>
 <div id="result"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="https://unpkg.com/gridjs/dist/gridjs.development.js"></script>
+
 <script>
 const b = document.getElementById('b')
 b.addEventListener('click', () => {
@@ -92,9 +94,6 @@ const data = {
 axios.post('https://torii4everyone.firebaseio.com/form.json', data)
     .then(res => console.log(res))
 })
-
-// <button id="g">get</button>
-// <div id="result"></div>
  
 const g = document.getElementById('g')
 g.addEventListener('click', () => {
