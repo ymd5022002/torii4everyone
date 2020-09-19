@@ -29,9 +29,9 @@
 <h2>鳥居画像６</h2>
 作成中
 </form>
-<button id="b">button</button>
+<button id="b">アンケートを送信</button>
 <hr>
-<button id="g">get</button>
+<button id="g">集計結果を表示</button>
 <div id="result"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
@@ -66,7 +66,7 @@ axios.post('https://torii4everyone.firebaseio.com/form.json', data)
  
 const g = document.getElementById('g')
 g.addEventListener('click', () => {
-  axios.get('https://my-form-170ae.firebaseio.com/form.json')
+  axios.get('https://torii4everyone.firebaseio.com/form.json')
     .then(res => {
       const data = Object.keys(res.data).map(key => {
         return Object.values(res.data[key]).reverse()
