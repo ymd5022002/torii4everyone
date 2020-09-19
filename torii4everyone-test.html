@@ -1,0 +1,75 @@
+
+<h1>イベントの出欠確認</h1>
+<form>
+<h2>参加者の名前をご記入ください。</h2>
+<input type="text" value="" id="user">
+<h2>参加されますか？</h2>
+<ul>
+    <li>はい <input type="radio" name="join" value="yes"></li>
+    <li>いいえ <input type="radio" name="join" value="no"></li>
+</ul>
+</form>
+<button id="b">button</button>
+<hr>
+<button id="g">get</button>
+<div id="result"></div>
+
+<!--
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyBTO1Wx8HbOmXvwY5Bw6Jda5cSTzT1uPDI",
+      authDomain: "torii4everyone.firebaseapp.com",
+      databaseURL: "https://torii4everyone.firebaseio.com",
+      projectId: "torii4everyone",
+      storageBucket: "torii4everyone.appspot.com",
+      messagingSenderId: "753936771598",
+      appId: "1:753936771598:web:6fe3bcdb99690e8cb4ea5f",
+      measurementId: "G-7LCJB2V1E1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+const b = document.getElementById('b')
+b.addEventListener('click', () => {
+const user = document.getElementById('user').value
+const join = document.getElementsByName('join')
+let joinResult;
+for (let i = 0; i < join.length; i++) {
+    if (join[i].checked) {
+    joinResult = join[i].value
+    break;
+    }
+}
+const data = {
+    user: user,
+    joinResult: joinResult,
+}
+axios.post('https://torii4everyone.firebaseio.com/form.json', data)
+    .then(res => console.log(res))
+})
+
+// <button id="g">get</button>
+// <div id="result"></div>
+ 
+const g = document.getElementById('g')
+g.addEventListener('click', () => {
+  axios.get('https://my-form-170ae.firebaseio.com/form.json')
+    .then(res => {
+      const data = Object.keys(res.data).map(key => {
+        return Object.values(res.data[key]).reverse()
+      })
+      new gridjs.Grid({
+        search: true,
+        columns: ['ユーザー名', '参加可否'],
+        data: data
+      }).render(document.getElementById('result'));
+    })
+})
+
