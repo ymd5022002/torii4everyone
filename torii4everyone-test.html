@@ -1,44 +1,51 @@
 
-<h1>イベントの出欠確認</h1>
+<h1>みんなの鳥居のキズプロジェクト</h1>
 <form>
-<h2>参加者の名前をご記入ください。</h2>
-<input type="text" value="" id="user">
-<h2>参加されますか？</h2>
-<ul>
-    <li>はい <input type="radio" name="join" value="yes"></li>
-    <li>いいえ <input type="radio" name="join" value="no"></li>
-</ul>
+<h2>神社名</h2>
+<input type="text" value="" id="shrine">
+<h2>都道府県</h2>
+<input type="text" value="" id="pref">
+<h2>市町村</h2>
+<input type="text" value="" id="city">
+<h2>緯度</h2>
+<input type="text" value="" id="lat">
+<h2>経度</h2>
+<input type="text" value="" id="lng">
+<h2>住所(空欄OK)</h2>
+<input type="text" value="" id="addr">
+
+<h2>調査結果画像</h2>
+作成中
+<h2>鳥居画像１</h2>
+作成中
+<h2>鳥居画像２</h2>
+作成中
+<h2>鳥居画像３</h2>
+作成中
+<h2>鳥居画像４</h2>
+作成中
+<h2>鳥居画像５</h2>
+作成中
+<h2>鳥居画像６</h2>
+作成中
 </form>
 <button id="b">button</button>
 <hr>
 <button id="g">get</button>
 <div id="result"></div>
 
-<!--
-<script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyBTO1Wx8HbOmXvwY5Bw6Jda5cSTzT1uPDI",
-      authDomain: "torii4everyone.firebaseapp.com",
-      databaseURL: "https://torii4everyone.firebaseio.com",
-      projectId: "torii4everyone",
-      storageBucket: "torii4everyone.appspot.com",
-      messagingSenderId: "753936771598",
-      appId: "1:753936771598:web:6fe3bcdb99690e8cb4ea5f",
-      measurementId: "G-7LCJB2V1E1"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
-  -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script>
 const b = document.getElementById('b')
 b.addEventListener('click', () => {
-const user = document.getElementById('user').value
+const shrine = document.getElementById('shrine').value
+const pref = document.getElementById('pref').value
+const city = document.getElementById('city').value
+const lat = document.getElementById('lat').value
+const lng = document.getElementById('lng').value
+const addr = document.getElementById('addr').value
+
+/*
 const join = document.getElementsByName('join')
 let joinResult;
 for (let i = 0; i < join.length; i++) {
@@ -51,6 +58,8 @@ const data = {
     user: user,
     joinResult: joinResult,
 }
+*/
+
 axios.post('https://torii4everyone.firebaseio.com/form.json', data)
     .then(res => console.log(res))
 })
@@ -67,9 +76,10 @@ g.addEventListener('click', () => {
       })
       new gridjs.Grid({
         search: true,
-        columns: ['ユーザー名', '参加可否'],
+        columns: ['神社名', '都道府県', '市町村', '緯度', '経度', '住所(空欄OK)'],
         data: data
       }).render(document.getElementById('result'));
     })
 })
+
 </script>
